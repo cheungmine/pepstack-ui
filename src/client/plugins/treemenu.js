@@ -3,15 +3,22 @@
  * treemenu.js
  * 2015-09-18
  */
-var TreeMenu = function (menuId, display) {
-    this._init(menuId, display);
+var TreeMenu = function (menuId, display, iclass) {
+    this._init(menuId, display, iclass);
 };
 
+TreeMenu.TYPE_STRING = "[PepstackUI.TreeMenu]";
 
-TreeMenu.prototype._init = function (menuId, display) {
+TreeMenu.prototype._init = function (menuId, display, iclass) {
+    /* iclass:
+     *   icon-desktop
+     *   icon-list
+     *   icon-edit
+     */
     this.menu = {
-        menuId: menuId,
+        id: menuId,
         display: display,
+        iclass: iclass,
         submenus: []
     };
 };
@@ -19,39 +26,66 @@ TreeMenu.prototype._init = function (menuId, display) {
 
 // public:
 //
-TreeMenu.prototype.toString = function () {
-    return "[javascript PepstackUI.TreeMenu]";
+TreeMenu.prototype.typeString = function () {
+    return TreeMenu.TYPE_STRING;
 };
 
 
-TreeMenu.prototype.toJsonString = function () {
-    return JSON.stringify(this.menu);
-};
+TreeMenu.prototype.toJsonString = function (indent) {
+    if (indent === undefined) {
+        indent = '';
+    }
 
-
-TreeMenu.prototype.toHtmlString = function () {
-    var html = '<li id ="' + this.menu.menuId + '"><a href="javascript:void(0);" class="dropdown-toggle">' +
-        '<i class="icon-desktop"></i><span class="menu-text">' +  this.menu.display + '</span><b class="arrow icon-angle-down"></b></a>\n';
-
-    html += '  <ul class="submenu">\n';
+    var submenusJson;
     this.menu.submenus.forEach(function (el) {
-        var li = '    <li id="' + el.itemId + '"><a href="' + el.url + '"><i class="' + el.iclass + '"></i>' + el.display + '</a></li>\n';
-        html += li;
+        if (submenusJson === undefined) {
+            submenusJson = '[\n' + el.toJsonString(indent + '    ');
+        } else {
+            submenusJson += ',\n' + el.toJsonString(indent + '    ');
+        }
     });
-    html += '  </ul>\n';
+    if (submenusJson === undefined) {
+        submenusJson = '[]\n';
+    } else {
+        submenusJson += '\n' + indent + '  ]\n';
+    }
 
-    html += '</li>\n';
+    var json =
+        indent + '{\n' +
+        indent + '  "id": "' + this.menu.id + '",\n' +
+        indent + '  "display": "' + this.menu.display + '",\n' +
+        indent + '  "iclass": "' + this.menu.iclass + '",\n' +
+        indent + '  "submenus": ' + submenusJson +
+        indent + '}';
+    return json;
+};
+
+
+TreeMenu.prototype.toHtmlString = function (indent) {
+    if (indent === undefined) {
+        indent = '';
+    }
+
+    var submenusHtml = indent + '  <ul class="submenu">\n';
+    this.menu.submenus.forEach(function (el) {
+        submenusHtml += el.toHtmlString(indent + '    ');
+    });
+    submenusHtml += indent + '  </ul>\n';
+
+    var html =
+        indent + '<li id ="' + this.menu.id + '">\n' +
+        indent + '  <a href="javascript:void(0);" class="dropdown-toggle">\n' +
+        indent + '    <i class="' + this.menu.iclass + '"></i>\n' +
+        indent + '    <span class="menu-text">' +  this.menu.display + '</span>\n' +
+        indent + '    <b class="arrow icon-angle-down"></b>\n' +
+        indent + '  </a>\n' + submenusHtml +
+        indent + '</li>\n';
+
     return html;
 };
 
 
-TreeMenu.prototype.addSubmenu = function (itemId, display, url, optClass) {
-    var iclass = (optClass === undefined ? "icon-double-angle-right" : optClass);
-
-    this.menu.submenus.push({
-        itemId: itemId,
-        display: display,
-        url: url,
-        iclass: iclass
-    });
+TreeMenu.prototype.addSubmenu = function (submenu) {
+    this.menu.submenus.push(submenu);
 };
+

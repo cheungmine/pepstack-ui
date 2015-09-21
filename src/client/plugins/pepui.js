@@ -2,6 +2,7 @@
 /**
  * pepui.js
  * 2015-09-18
+ * http://www.cleancss.com/html-beautify/
  */
 var PepUI = function (assetsRoot) {
     this._init(assetsRoot);

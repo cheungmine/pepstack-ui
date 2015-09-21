@@ -8,6 +8,8 @@ Build Dependencies
 --------------------
 Make sure you have all below dependencies installed on your development machine.
 
+Mandantory:
+
 * ant-1.8.2+
 
 * GNU Make 3.81+
@@ -15,6 +17,8 @@ Make sure you have all below dependencies installed on your development machine.
 * JDK1.6+
 
 * nodejs v4.0.0+
+
+Will be used:
 
 * Python 2.7.x with PyYAML and Jinja2
 
@@ -28,7 +32,7 @@ It will create build and dist dirs in project folder.
 
 2) Open dist/index.html with firefox or chrome browsers.
 
-Enjoy it!
+You may refer to dist/index.js to see how to use it (pepstack-ui.js).
 
 
 NOTE

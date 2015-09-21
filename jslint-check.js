@@ -13,7 +13,9 @@ var
         "./src/client/error.js",
         "./src/client/plugins/pepui.js",
         "./src/client/plugins/treemenu.js",
-        "./src/client/plugins/megamenu.js"
+        "./src/client/plugins/megamenu.js",
+        "./src/client/plugins/textmenu.js",
+        "./src/client/plugins/menugroup.js"
     ]
 ;
 

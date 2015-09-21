@@ -4,6 +4,7 @@
 *.pyc
 *.log
 *.out
+Thumbs.db
 *.exe
 target/
 build/

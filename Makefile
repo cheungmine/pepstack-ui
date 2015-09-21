@@ -78,7 +78,7 @@ all: clean lint update test
 	@@echo "all built successfully!"
 
 ${DIST_DIR}:
-	@@mkdir -p ${DIST_DIR}
+	@@mkdir -p ${SCRIPT_DIR}/tmp
 
 init: ${DIST_DIR} ${JS_MODULES}
 	@@mkdir -p ${BUILD_DIR}
@@ -137,7 +137,7 @@ min: init css
 	fi
 	@@echo "Success!"
 
-update: min
+update: min jsacompress
 	@@echo "-------- update "${MODULE_NAME}" --------"
 	@@echo "copying " ${DEP_DIR}/prerequisite.js "to" ${SCRIPT_DIR}
 	@@cp ${DEP_DIR}/prerequisite.js ${SCRIPT_DIR}
@@ -145,6 +145,9 @@ update: min
 	@@cp ${DEP_DIR}/encode.js ${SCRIPT_DIR}
 	@@echo "copying " ${DEP_DIR}/security.js "to" ${SCRIPT_DIR}
 	@@cp ${DEP_DIR}/security.js ${SCRIPT_DIR}
+
+	@@cp ${SCRIPT_DIR}/tmp/${MODULE_NAME}.js ${SCRIPT_DIR}
+	@@rm -rf ${SCRIPT_DIR}/tmp
 
 	@@if ${JQUERY_UI_ENABLED} -eq true; then \
 		cp -r ${JQUERY_UI_DIR}/js/* ${SCRIPT_DIR}/jquery; \
@@ -165,6 +168,10 @@ test: init
 	@@cp -r ${TEST_DIR}/* ${DIST_DIR}
 
 jsacompress:
+	@@cp ${DEP_DIR}/prerequisite.js ${SCRIPT_DIR}/tmp
+	@@cp ${DEP_DIR}/encode.js ${SCRIPT_DIR}/tmp
+	@@cp ${DEP_DIR}/security.js ${SCRIPT_DIR}/tmp
+	@@cp ${SCRIPT_DIR}/${MODULE_NAME}.js ${SCRIPT_DIR}/tmp
 	@@ant
 
 clean:

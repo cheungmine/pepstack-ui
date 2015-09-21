@@ -1,0 +1,12 @@
+# comment line should be ignored
+*.[oa]
+*~
+*.pyc
+*.log
+*.out
+*.exe
+target/
+build/
+tmp/
+dist/
+

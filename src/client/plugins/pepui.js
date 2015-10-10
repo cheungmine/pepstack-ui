@@ -46,6 +46,10 @@ PepUI.prototype._init = function (assetsRoot) {
         assetsJS + 'flot/jquery.flot.min.js',
         assetsJS + 'flot/jquery.flot.pie.min.js',
         assetsJS + 'flot/jquery.flot.resize.min.js',
+
+        assetsJS + 'bootbox.min.js',
+        assetsJS + 'jquery.gritter.min.js',
+
         assetsJS + 'ace-elements.min.js',
         assetsJS + 'ace.min.js'
     );

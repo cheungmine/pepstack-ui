@@ -50,7 +50,7 @@ TextMenu.prototype.toHtmlString = function (indent) {
 
     var html =
         indent + '<li id ="' + this.menu.id + '">\n' +
-        indent + '  <a href="' + this.menu.url + '">\n' +
+        indent + '  <a href="javascript:void(0);" onclick="clickMenu(\'' + this.menu.url + '\');">\n' +
         indent + '    <i class="' + this.menu.iclass + '"></i>\n' +
         indent + '    <span class="menu-text">' + this.menu.display + '</span>\n' +
         indent + '  </a>\n' +

@@ -3,8 +3,11 @@
  * version: 0.0.1
  */
 Utils.importScripts(
-    'assets/js/jquery-2.0.3.min.js',
-    'script/pepstack-ui.js'
+    "assets/js/jquery-2.0.3.min.js",
+    "assets/js/date-time/bootstrap-datepicker.min.js",
+    "assets/js/jqGrid/jquery.jqGrid.min.js",
+    "assets/js/jqGrid/i18n/grid.locale-en.js",
+    "script/pepstack-ui.js"
 );
 
 (function (window, undefined) {

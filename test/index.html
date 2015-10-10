@@ -15,7 +15,12 @@
     <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
     <![endif]-->
 
-    <!-- page specific plugin styles -->
+    <!-- jqgrid.html specific plugin styles
+    <link rel="stylesheet" href="assets/css/jquery-ui-1.10.3.full.min.css" />
+    <link rel="stylesheet" href="assets/css/datepicker.css" />
+    <link rel="stylesheet" href="assets/css/ui.jqgrid.css" />
+    -->
+
     <!-- ace styles -->
     <link rel="stylesheet" href="assets/css/ace.min.css" />
     <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
@@ -29,7 +34,7 @@
     <script src="script/prerequisite.js"></script>
 </head>
 <body>
- <div class="main-container" id="main-container">
+    <div class="main-container" id="main-container">
         <script type="text/javascript">
             try{ace.settings.check('main-container' , 'fixed')}catch(e){}
         </script>
@@ -104,7 +109,7 @@
                     </div><!-- #nav-search -->
                 </div>
 
-                <div class="page-content">
+                <div id="pageContent" class="page-content">
                     <div class="page-header">
                         <h1>
                             控制台
@@ -1309,6 +1314,9 @@
     <script type="text/javascript" src="index.js"></script>
 
     <script type="text/javascript">
+        var clickMenu = function (url) {
+            $('#pageContent').load(url);
+        };
     </script>
 </body>
 </html>

@@ -327,6 +327,29 @@
         return jsPath;
     };
 
+
+    var addCSSFiles = Utils.addCSSFiles = (function () {
+        var addCSS = function (cssfile) {
+            var link = document.createElement('link');
+            link.type = 'text/css';
+            link.rel = 'stylesheet';
+            link.href = cssfile;
+            document.getElementsByTagName("head")[0].appendChild(link);
+        };
+
+        return function addCSSFiles() {
+            var
+                args = Array.prototype.slice.call(arguments),
+                len = args.length,
+                i;
+
+            for (i = 0; i < len; i++) {
+                addCSS(args[i]);
+            }
+        };
+    }());
+
+
     var genRandomInt = Utils.genRandomInt = function (minVal, maxVal) {
         if (minVal === undefined) {
             minVal = 0;

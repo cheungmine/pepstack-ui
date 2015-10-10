@@ -11,11 +11,12 @@ var
         "./dep/security.js",
         "./dep/encode.js",
         "./src/client/error.js",
+        "./src/client/plugins/uigroup.js",
         "./src/client/plugins/pepui.js",
         "./src/client/plugins/treemenu.js",
         "./src/client/plugins/megamenu.js",
         "./src/client/plugins/textmenu.js",
-        "./src/client/plugins/menugroup.js"
+        "./src/client/plugins/accordion.js"
     ]
 ;
 

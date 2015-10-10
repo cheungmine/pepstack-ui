@@ -18,37 +18,78 @@ PepUI.getInstance = function (assetsRoot) {
 PepUI.prototype._version = "@VERSION";
 
 PepUI.prototype._init = function (assetsRoot) {
+    var assetsJS = assetsRoot + "/js/";
 
     var browser = Utils.getBrowserAgent();
 
-    if (Utils.isTrue(browser.ie)) {
-        if (browser.ieVer.isLtIE9) {
-            // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
-            // <!--[if lt IE 9]>
-            Utils.importScripts(assetsRoot + '/js/excanvas.min.js',
-                assetsRoot + '/js/html5shiv.js',
-                assetsRoot + '/js/respond.min.js');
-            // <![endif]-->
-        }
+    if (Utils.isTrue(browser.ie) && browser.ieVer.isLtIE9) {
+        // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+        Utils.importScripts(
+            assetsJS + 'excanvas.min.js',
+            assetsJS + 'html5shiv.js',
+            assetsJS + 'respond.min.js'
+        );
     }
 
-    Utils.importScripts(assetsRoot + '/js/ace-extra.min.js',
-        assetsRoot + '/js/bootstrap.min.js',
-        assetsRoot + '/js/typeahead-bs2.min.js',
-        assetsRoot + '/js/jquery-ui-1.10.3.custom.min.js',
-        assetsRoot + '/js/jquery.ui.touch-punch.min.js',
-        assetsRoot + '/js/jquery.slimscroll.min.js',
-        assetsRoot + '/js/jquery.easy-pie-chart.min.js',
-        assetsRoot + '/js/jquery.sparkline.min.js',
-        assetsRoot + '/js/flot/jquery.flot.min.js',
-        assetsRoot + '/js/flot/jquery.flot.pie.min.js',
-        assetsRoot + '/js/flot/jquery.flot.resize.min.js',
-        assetsRoot + '/js/ace-elements.min.js',
-        assetsRoot + '/js/ace.min.js');
+    Utils.importScripts(
+        assetsJS + "date-time/bootstrap-datepicker.min.js",
+        assetsJS + "jqGrid/jquery.jqGrid.min.js",
+        assetsJS + "jqGrid/i18n/grid.locale-en.js",
+        assetsJS + 'ace-extra.min.js',
+        assetsJS + 'bootstrap.min.js',
+        assetsJS + 'typeahead-bs2.min.js',
+        assetsJS + 'jquery-ui-1.10.3.custom.min.js',
+        assetsJS + 'jquery.ui.touch-punch.min.js',
+        assetsJS + 'jquery.slimscroll.min.js',
+        assetsJS + 'jquery.easy-pie-chart.min.js',
+        assetsJS + 'jquery.sparkline.min.js',
+        assetsJS + 'flot/jquery.flot.min.js',
+        assetsJS + 'flot/jquery.flot.pie.min.js',
+        assetsJS + 'flot/jquery.flot.resize.min.js',
+        assetsJS + 'ace-elements.min.js',
+        assetsJS + 'ace.min.js'
+    );
 
     if (document.hasOwnProperty("ontouchend")) {
-        Utils.importScripts(assetsRoot + '/js/jquery.mobile.custom.min.js');
+        Utils.importScripts(assetsJS + 'jquery.mobile.custom.min.js');
     }
+
+    var assetsCSS = assetsRoot + "/css/";
+
+    Utils.addCSSFiles(
+        // basic styles
+        assetsCSS + "bootstrap.min.css",
+        assetsCSS + "font-awesome.min.css"
+    );
+
+    if (Utils.isTrue(browser.ie) && browser.ieVer.isIE7) {
+        Utils.addCSSFiles(
+            assetsCSS + "font-awesome-ie7.min.css"
+        );
+    }
+
+    Utils.addCSSFiles(
+        // jqgrid.html
+        assetsCSS + "jquery-ui-1.10.3.full.min.css",
+        assetsCSS + "datepicker.css",
+        assetsCSS + "ui.jqgrid.css",
+
+        // elements.html
+        assetsCSS + "jquery-ui-1.10.3.custom.min.css",
+        assetsCSS + "jquery.gritter.css",
+
+        // ace styles
+        assetsCSS + "ace.min.css",
+        assetsCSS + "ace-rtl.min.css",
+        assetsCSS + "ace-skins.min.css"
+    );
+
+    if (Utils.isTrue(browser.ie) && browser.ieVer.isLteIE8) {
+        Utils.addCSSFiles(
+            assetsCSS + "ace-ie.min.css"
+        );
+    }
+
 };
 
 // public:

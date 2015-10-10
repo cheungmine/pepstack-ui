@@ -122,13 +122,9 @@
                 editurl: $path_base+"/dummy.html",//nothing is saved
                 caption: "jqGrid with inline editing",
 
-
                 autowidth: true
 
             });
-
-            //enable search/filter toolbar
-            //jQuery(grid_selector).jqGrid('filterToolbar',{defaultSearch:true,stringResult:true})
 
             //switch element when editing inline
             function aceSwitch( cellvalue, options, cell ) {
@@ -345,9 +341,6 @@
                 $('.navtable .ui-pg-button').tooltip({container:'body'});
                 $(table).find('.ui-pg-div').tooltip({container:'body'});
             }
-
-            //var selr = jQuery(grid_selector).jqGrid('getGridParam','selrow');
-
 
         });
     </script>

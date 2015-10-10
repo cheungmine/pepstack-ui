@@ -3,15 +3,20 @@
  * end.js
  * public interfaces:
  */
-window.PepstackUI = {};
+window.pepstackUI = {};
 
-window.PepstackUI.useAssets = function (assets) {
+window.pepstackUI.useAssets = function (assets) {
     return PepUI.getInstance(assets);
 };
 
-window.PepstackUI.TextMenu = TextMenu;
-window.PepstackUI.SlideMenu = SlideMenu;
-window.PepstackUI.TreeMenu = TreeMenu;
-window.PepstackUI.MegaMenu = MegaMenu;
-window.PepstackUI.MenuGroup = MenuGroup;
+window.pepstackUI.UIGroup = UIGroup;
+
+window.pepstackUI.TextMenu = TextMenu;
+window.pepstackUI.SlideMenu = SlideMenu;
+window.pepstackUI.TreeMenu = TreeMenu;
+window.pepstackUI.MegaMenu = MegaMenu;
+
+window.pepstackUI.Accordion = Accordion;
+window.pepstackUI.AccordionPanel = AccordionPanel;
+
 }(window, jQuery));

@@ -14,5 +14,5 @@ MegaMenu.prototype._init = function () {
 // public:
 //
 MegaMenu.prototype.toString = function () {
-    return "[javascript PepstackUI.MegaMenu]";
+    return "[javascript pepstackUI.MegaMenu]";
 };

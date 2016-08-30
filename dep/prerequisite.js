@@ -350,6 +350,40 @@
     }());
 
 
+    var addCSSStyle = Utils.addCSSStyle = (function () {
+        var addStyle = function (cssfile, cssclass, cssid) {
+            var link = document.createElement('link');
+            link.type = 'text/css';
+            link.rel = 'stylesheet';
+            link.href = cssfile;
+            if (Utils.notEmpty(cssid)) {
+                link.id = cssid;
+            }
+            if (Utils.notEmpty(cssclass)) {
+                link.className = cssclass;
+            }
+            document.getElementsByTagName("head")[0].appendChild(link);
+        };
+
+        return function addCSSStyle() {
+            var
+                args = Array.prototype.slice.call(arguments),
+                len = args.length
+                ;
+
+            if (len == 1) {
+                addStyle(args[0], '', '');
+            } else if (len == 2) {
+                addStyle(args[0], args[1], '');
+            } else if (len == 3) {
+                addStyle(args[0], args[1], args[2]);
+            } else {
+                log("invalid args: " + args);
+            }
+        };
+    }());
+
+
     var genRandomInt = Utils.genRandomInt = function (minVal, maxVal) {
         if (minVal === undefined) {
             minVal = 0;
